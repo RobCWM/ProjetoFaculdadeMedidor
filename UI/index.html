@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle de Armazenamento e Alertas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Painel de Controle de Armazenamento e Alertas</h1>
+            <p>www.cloudstorageserver.com</p>
+        </header>
+        <div class="dashboard">
+            <div class="card storage-settings">
+                <h2>Configurações de Armazenamento</h2>
+                <label for="storage">Espaço de Armazenamento:</label>
+                <input type="text" id="storage" placeholder="Ex: 100 GB">
+                <label for="used-storage">Espaço Usado:</label>
+                <input type="text" id="used-storage" placeholder="Ex: 25 GB">
+            </div>
+            <div class="card alert-settings">
+                <h2>Configurações de Alertas</h2>
+                <label for="alert-threshold">Limite de Alerta:</label>
+                <input type="text" id="alert-threshold" placeholder="Ex: 80%">
+            </div>
+        </div>
+        <div class="card chart-container">
+            <h2>Temperatura ao Longo do Tempo</h2>
+            <canvas id="temperatureChart"></canvas>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('temperatureChart').getContext('2d');
+        const temperatureChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00'],
+                datasets: [{
+                    label: 'Temperatura (°C)',
+                    data: [22, 24, 25, 23, 26, 27, 28],
+                    borderColor: '#007bff',
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                    borderWidth: 2,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
